@@ -1,0 +1,25 @@
+{
+    "packFiles": [
+        "shirtC_C0_geoSdm.jSkin", 
+        "hairC_C0_geoSdm.jSkin", 
+        "jacketC_C0_geoSdm.jSkin", 
+        "hairbackC_C0_geoSdm.jSkin", 
+        "hairSideC_C0_geoSdm.jSkin", 
+        "hairTopC_C0_geoSdm.jSkin", 
+        "hairClipC_C0_geoSdm.jSkin", 
+        "body_C0_geoSdm.jSkin", 
+        "brow_C0_geoSdm.jSkin", 
+        "eyehighlightSecond_R0_geoSdm.jSkin", 
+        "eyehighlight_R0_geoSdm.jSkin", 
+        "eyehighlightSecond_L0_geoSdm.jSkin", 
+        "eyehighlight_L0_geoSdm.jSkin", 
+        "eyelash_C0_geoSdm.jSkin", 
+        "eyeline_C0_geoSdm.jSkin", 
+        "eye_R0_geoSdm.jSkin", 
+        "eye_L0_geoSdm.jSkin", 
+        "teethU_C0_geoSdm.jSkin", 
+        "teethD_C0_geoSdm.jSkin", 
+        "tongue_C0_geoSdm.jSkin"
+    ], 
+    "rootPath": "D:/Dropbox/WIP/Anima/CEDEC/build/custom_steps/chara/anima_girl/outfit_C/game/data/skin"
+}

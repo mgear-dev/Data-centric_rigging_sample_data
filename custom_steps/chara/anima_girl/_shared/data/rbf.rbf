@@ -1,0 +1,1520 @@
+{
+    "skirt_L2_fk0_driven_WD": {
+        "driverNode": [
+            "leg_L0_0_jnt"
+        ], 
+        "poseLength": 1.0, 
+        "drawOrigin": true, 
+        "drawIndices": true, 
+        "twist": false, 
+        "drawWeight": true, 
+        "transformNode": {
+            "parent": "skirt_L2_fk0_driven", 
+            "sz": 1.0000000000000004, 
+            "sy": 1.0000000000000002, 
+            "sx": 1.0000000000000004, 
+            "tz": 10.295193128563326, 
+            "name": "skirt_L2_fk0_driven_WD_trfm", 
+            "tx": 81.99954665681413, 
+            "ty": 34.248084729287434, 
+            "rx": -83.48501403529426, 
+            "ry": 86.1895051627608, 
+            "rz": 26.942805312545456, 
+            "v": true
+        }, 
+        "drawTwist": false, 
+        "drivenNode": [
+            "skirt_L2_fk0_driven"
+        ], 
+        "scale": 1.0, 
+        "angle": 45.0, 
+        "outWeight": 0.0, 
+        "invert": false, 
+        "driverControl": "leg_L0_fk0_ctl", 
+        "distanceType": 0, 
+        "useInterpolation": false, 
+        "twistAxis": 0, 
+        "type": 1, 
+        "useTranslate": false, 
+        "drawCenterCone": false, 
+        "interpolation": 0, 
+        "rbfMode": 0, 
+        "direction": 0, 
+        "drawCone": true, 
+        "connections": [
+            [
+                "skirt_L2_fk0_driven_WD.output[0]", 
+                "skirt_L2_fk0_driven.translateX"
+            ], 
+            [
+                "skirt_L2_fk0_driven_WD.output[1]", 
+                "skirt_L2_fk0_driven.translateY"
+            ], 
+            [
+                "skirt_L2_fk0_driven_WD.output[2]", 
+                "skirt_L2_fk0_driven.translateZ"
+            ], 
+            [
+                "skirt_L2_fk0_driven_WD.output[3]", 
+                "skirt_L2_fk0_driven.rotateX"
+            ], 
+            [
+                "skirt_L2_fk0_driven_WD.output[4]", 
+                "skirt_L2_fk0_driven.rotateY"
+            ], 
+            [
+                "skirt_L2_fk0_driven_WD.output[5]", 
+                "skirt_L2_fk0_driven.rotateZ"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateX", 
+                "skirt_L2_fk0_driven_WD.input[0]"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateY", 
+                "skirt_L2_fk0_driven_WD.input[1]"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateZ", 
+                "skirt_L2_fk0_driven_WD.input[2]"
+            ], 
+            [
+                "skirt_L2_fk0_ctl.RBF_Multiplier", 
+                "skirt_L2_fk0_driven_WD.scale"
+            ]
+        ], 
+        "opposite": false, 
+        "iconSize": 1.0, 
+        "drivenAttrs": [
+            "translateX", 
+            "translateY", 
+            "translateZ", 
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "translateMin": 0.0, 
+        "driverPosesInfo": {
+            "translateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "translateY": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "translateZ": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "scaleX": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleY": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleZ": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "rotateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                35.5593201193624
+            ], 
+            "rotateY": [
+                0.0, 
+                0.0, 
+                50.58167416400444, 
+                0.0, 
+                29.598983978376275
+            ], 
+            "rotateZ": [
+                0.0, 
+                69.5228848504122, 
+                0.0, 
+                -44.751388095527794, 
+                51.97337992200988
+            ]
+        }, 
+        "drawPoses": true, 
+        "visibility": true, 
+        "indexDistance": 0.1, 
+        "setupName": "leg_L", 
+        "twistAngle": 90.0, 
+        "poses": {
+            "poseInput": [
+                [
+                    2.416167136821291e-15, 
+                    2.4789054336152306e-14, 
+                    7.982935904090039e-05
+                ], 
+                [
+                    1.493984422217687e-14, 
+                    -4.1648701414066745e-14, 
+                    69.52296467976839
+                ], 
+                [
+                    6.274620384647008e-05, 
+                    50.581674163932036, 
+                    0.00012726277919973615
+                ], 
+                [
+                    1.6670145303273292e-14, 
+                    -6.04030478247372e-14, 
+                    -44.75130826617223
+                ], 
+                [
+                    14.718531025173528, 
+                    29.598935993171985, 
+                    51.97345443806833
+                ]
+            ], 
+            "poseValue": [
+                [
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                [
+                    -2.842170943040401e-14, 
+                    0.0, 
+                    -3.552713678800501e-15, 
+                    5.723778456958371, 
+                    11.593453054589963, 
+                    6.096008032787543
+                ], 
+                [
+                    -2.842170943040401e-14, 
+                    -7.105427357601002e-15, 
+                    0.0, 
+                    -0.32257577888840705, 
+                    23.668360162729194, 
+                    -1.1425035083037587
+                ], 
+                [
+                    -2.842170943040401e-14, 
+                    -7.105427357601002e-15, 
+                    1.7763568394002505e-15, 
+                    -3.210675980537829, 
+                    5.257217900271489, 
+                    -27.564953765243533
+                ], 
+                [
+                    -4.263256414560601e-14, 
+                    -1.4210854715202004e-14, 
+                    -1.7763568394002505e-15, 
+                    12.328703168289723, 
+                    29.340372547289377, 
+                    13.891315690226635
+                ]
+            ]
+        }, 
+        "grow": true, 
+        "attributesToRecreate": [], 
+        "allowNegativeWeights": true, 
+        "translateMax": 0.0, 
+        "driverAttrs": [
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "centerAngle": 0.0, 
+        "useRotate": true, 
+        "driverIndex": 0, 
+        "drawDriver": false, 
+        "rbfType": "weightDriver", 
+        "driverList": {}, 
+        "drivenControlName": "skirt_L2_fk0_ctl"
+    }, 
+    "skirt_R2_fk0_driven_WD": {
+        "driverNode": [
+            "leg_R0_0_jnt"
+        ], 
+        "poseLength": 1.0, 
+        "drawOrigin": true, 
+        "drawIndices": true, 
+        "twist": false, 
+        "drawWeight": true, 
+        "transformNode": {
+            "parent": "skirt_R2_fk0_driven", 
+            "sz": 1.0000000000000004, 
+            "sy": 1.0000000000000002, 
+            "sx": 1.0000000000000004, 
+            "tz": 10.295193128563326, 
+            "name": "skirt_R2_fk0_driven_WD_trfm", 
+            "tx": 81.99954665681413, 
+            "ty": 34.248084729287434, 
+            "rx": -83.48501403529426, 
+            "ry": 86.1895051627608, 
+            "rz": 26.942805312545456, 
+            "v": true
+        }, 
+        "drawTwist": false, 
+        "drivenNode": [
+            "skirt_R2_fk0_driven"
+        ], 
+        "scale": 1.0, 
+        "angle": 45.0, 
+        "outWeight": 0.0, 
+        "invert": false, 
+        "driverControl": "leg_R0_fk0_ctl", 
+        "distanceType": 0, 
+        "useInterpolation": false, 
+        "twistAxis": 0, 
+        "type": 1, 
+        "useTranslate": false, 
+        "drawCenterCone": false, 
+        "interpolation": 0, 
+        "rbfMode": 0, 
+        "direction": 0, 
+        "drawCone": true, 
+        "connections": [
+            [
+                "skirt_R2_fk0_driven_WD.output[0]", 
+                "skirt_R2_fk0_driven.translateX"
+            ], 
+            [
+                "skirt_R2_fk0_driven_WD.output[1]", 
+                "skirt_R2_fk0_driven.translateY"
+            ], 
+            [
+                "skirt_R2_fk0_driven_WD.output[2]", 
+                "skirt_R2_fk0_driven.translateZ"
+            ], 
+            [
+                "skirt_R2_fk0_driven_WD.output[3]", 
+                "skirt_R2_fk0_driven.rotateX"
+            ], 
+            [
+                "skirt_R2_fk0_driven_WD.output[4]", 
+                "skirt_R2_fk0_driven.rotateY"
+            ], 
+            [
+                "skirt_R2_fk0_driven_WD.output[5]", 
+                "skirt_R2_fk0_driven.rotateZ"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateX", 
+                "skirt_R2_fk0_driven_WD.input[0]"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateY", 
+                "skirt_R2_fk0_driven_WD.input[1]"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateZ", 
+                "skirt_R2_fk0_driven_WD.input[2]"
+            ], 
+            [
+                "skirt_R2_fk0_ctl.RBF_Multiplier", 
+                "skirt_R2_fk0_driven_WD.scale"
+            ]
+        ], 
+        "opposite": false, 
+        "iconSize": 1.0, 
+        "drivenAttrs": [
+            "translateX", 
+            "translateY", 
+            "translateZ", 
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "translateMin": 0.0, 
+        "driverPosesInfo": {
+            "translateX": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "translateY": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "translateZ": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "scaleX": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleY": [
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002
+            ], 
+            "scaleZ": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "rotateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                35.5593201193624
+            ], 
+            "rotateY": [
+                0.0, 
+                0.0, 
+                50.58167416400444, 
+                0.0, 
+                29.598983978376275
+            ], 
+            "rotateZ": [
+                0.0, 
+                69.5228848504122, 
+                0.0, 
+                -44.751388095527794, 
+                51.97337992200988
+            ]
+        }, 
+        "drawPoses": true, 
+        "visibility": true, 
+        "indexDistance": 0.1, 
+        "setupName": "leg_R", 
+        "twistAngle": 90.0, 
+        "poses": {
+            "poseInput": [
+                [
+                    -5.574808705126576e-15, 
+                    6.135766990824335e-14, 
+                    7.982935337275435e-05
+                ], 
+                [
+                    -1.0899752298140939e-14, 
+                    3.7965428454703614e-14, 
+                    69.5229646797679
+                ], 
+                [
+                    6.27462094262517e-05, 
+                    50.58167416393244, 
+                    0.00012726278216001124
+                ], 
+                [
+                    9.459405629415607e-15, 
+                    -1.2810058416394499e-14, 
+                    -44.7513082661719
+                ], 
+                [
+                    14.718530485502072, 
+                    29.598935993168958, 
+                    51.97345443806786
+                ]
+            ], 
+            "poseValue": [
+                [
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    1.4908850069360235e-16, 
+                    -7.454425034680117e-17, 
+                    3.1805546814635168e-15
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    0.0, 
+                    -3.552713678800501e-15, 
+                    5.723778456958371, 
+                    11.593453054590094, 
+                    6.096008032787495
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    0.0, 
+                    0.0, 
+                    -0.32257577888844907, 
+                    23.668360162729186, 
+                    -1.1425035083037691
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    0.0, 
+                    1.7763568394002505e-15, 
+                    -3.2106759805378715, 
+                    5.257217900271713, 
+                    -27.56495376524344
+                ], 
+                [
+                    -2.842170943040401e-14, 
+                    -1.4210854715202004e-14, 
+                    -1.7763568394002505e-15, 
+                    12.328703168289735, 
+                    29.340372547289466, 
+                    13.891315690226637
+                ]
+            ]
+        }, 
+        "grow": true, 
+        "attributesToRecreate": [], 
+        "allowNegativeWeights": true, 
+        "translateMax": 0.0, 
+        "driverAttrs": [
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "centerAngle": 0.0, 
+        "useRotate": true, 
+        "driverIndex": 0, 
+        "drawDriver": false, 
+        "rbfType": "weightDriver", 
+        "driverList": {}, 
+        "drivenControlName": "skirt_R2_fk0_ctl"
+    }, 
+    "skirt_L1_fk0_driven_WD": {
+        "driverNode": [
+            "leg_L0_0_jnt"
+        ], 
+        "poseLength": 1.0, 
+        "drawOrigin": true, 
+        "drawIndices": true, 
+        "twist": false, 
+        "drawWeight": true, 
+        "transformNode": {
+            "parent": "skirt_L1_fk0_driven", 
+            "sz": 1.0, 
+            "sy": 0.9999999999999999, 
+            "sx": 0.9999999999999997, 
+            "tz": 2.413730897058708, 
+            "name": "skirt_L1_fk0_driven_WD_trfm", 
+            "tx": 81.20364518399319, 
+            "ty": 37.83174424677965, 
+            "rx": -180.0, 
+            "ry": 0.0, 
+            "rz": -70.89491139681645, 
+            "v": true
+        }, 
+        "drawTwist": false, 
+        "drivenNode": [
+            "skirt_L1_fk0_driven"
+        ], 
+        "scale": 1.0, 
+        "angle": 45.0, 
+        "outWeight": 0.0, 
+        "invert": false, 
+        "driverControl": "leg_L0_fk0_ctl", 
+        "distanceType": 0, 
+        "useInterpolation": false, 
+        "twistAxis": 0, 
+        "type": 1, 
+        "useTranslate": false, 
+        "drawCenterCone": false, 
+        "interpolation": 0, 
+        "rbfMode": 0, 
+        "direction": 0, 
+        "drawCone": true, 
+        "connections": [
+            [
+                "skirt_L1_fk0_driven_WD.output[0]", 
+                "skirt_L1_fk0_driven.translateX"
+            ], 
+            [
+                "skirt_L1_fk0_driven_WD.output[1]", 
+                "skirt_L1_fk0_driven.translateY"
+            ], 
+            [
+                "skirt_L1_fk0_driven_WD.output[2]", 
+                "skirt_L1_fk0_driven.translateZ"
+            ], 
+            [
+                "skirt_L1_fk0_driven_WD.output[3]", 
+                "skirt_L1_fk0_driven.rotateX"
+            ], 
+            [
+                "skirt_L1_fk0_driven_WD.output[4]", 
+                "skirt_L1_fk0_driven.rotateY"
+            ], 
+            [
+                "skirt_L1_fk0_driven_WD.output[5]", 
+                "skirt_L1_fk0_driven.rotateZ"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateX", 
+                "skirt_L1_fk0_driven_WD.input[0]"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateY", 
+                "skirt_L1_fk0_driven_WD.input[1]"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateZ", 
+                "skirt_L1_fk0_driven_WD.input[2]"
+            ], 
+            [
+                "skirt_L1_fk0_ctl.RBF_Multiplier", 
+                "skirt_L1_fk0_driven_WD.scale"
+            ]
+        ], 
+        "opposite": false, 
+        "iconSize": 1.0, 
+        "drivenAttrs": [
+            "translateX", 
+            "translateY", 
+            "translateZ", 
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "translateMin": 0.0, 
+        "driverPosesInfo": {
+            "translateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "translateY": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "translateZ": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "scaleX": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleY": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleZ": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "rotateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                35.5593201193624
+            ], 
+            "rotateY": [
+                0.0, 
+                0.0, 
+                50.58167416400444, 
+                0.0, 
+                29.598983978376275
+            ], 
+            "rotateZ": [
+                0.0, 
+                69.5228848504122, 
+                0.0, 
+                -44.751388095527794, 
+                51.97337992200988
+            ]
+        }, 
+        "drawPoses": true, 
+        "visibility": true, 
+        "indexDistance": 0.1, 
+        "setupName": "leg_L", 
+        "twistAngle": 90.0, 
+        "poses": {
+            "poseInput": [
+                [
+                    2.416167136821291e-15, 
+                    2.4789054336152306e-14, 
+                    7.982935904090039e-05
+                ], 
+                [
+                    1.493984422217687e-14, 
+                    -4.1648701414066745e-14, 
+                    69.52296467976839
+                ], 
+                [
+                    6.274620384647008e-05, 
+                    50.581674163932036, 
+                    0.00012726277919973615
+                ], 
+                [
+                    1.6670145303273292e-14, 
+                    -6.04030478247372e-14, 
+                    -44.75130826617223
+                ], 
+                [
+                    14.718531025173528, 
+                    29.598935993171985, 
+                    51.97345443806833
+                ]
+            ], 
+            "poseValue": [
+                [
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    1.4210854715202004e-14, 
+                    4.440892098500626e-16, 
+                    -3.623170683805826, 
+                    27.510965470340864, 
+                    -7.805568713651375
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    7.105427357601002e-15, 
+                    4.440892098500626e-16, 
+                    -4.128101485275548, 
+                    5.180707892500098, 
+                    -32.97809922392214
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    7.105427357601002e-15, 
+                    4.440892098500626e-16, 
+                    -1.0141603847376812, 
+                    -19.379396823734385, 
+                    -8.815044773429749
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    1.4210854715202004e-14, 
+                    8.881784197001252e-16, 
+                    -3.485706056358128, 
+                    21.988662405204984, 
+                    -27.15591104591272
+                ]
+            ]
+        }, 
+        "grow": true, 
+        "attributesToRecreate": [], 
+        "allowNegativeWeights": true, 
+        "translateMax": 0.0, 
+        "driverAttrs": [
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "centerAngle": 0.0, 
+        "useRotate": true, 
+        "driverIndex": 0, 
+        "drawDriver": false, 
+        "rbfType": "weightDriver", 
+        "driverList": {}, 
+        "drivenControlName": "skirt_L1_fk0_ctl"
+    }, 
+    "skirt_L0_fk0_driven_WD": {
+        "driverNode": [
+            "leg_L0_0_jnt"
+        ], 
+        "poseLength": 1.0, 
+        "drawOrigin": true, 
+        "drawIndices": true, 
+        "twist": false, 
+        "drawWeight": true, 
+        "transformNode": {
+            "parent": "skirt_L0_fk0_driven", 
+            "sz": 0.9999999999999999, 
+            "sy": 1.0, 
+            "sx": 1.0, 
+            "tz": -5.36633211541818, 
+            "name": "skirt_L0_fk0_driven_WD_trfm", 
+            "tx": 85.1046362732282, 
+            "ty": 27.488741589443247, 
+            "rx": 179.99999999999991, 
+            "ry": -87.7776629418316, 
+            "rz": -77.76424820321202, 
+            "v": true
+        }, 
+        "drawTwist": false, 
+        "drivenNode": [
+            "skirt_L0_fk0_driven"
+        ], 
+        "scale": 1.0, 
+        "angle": 45.0, 
+        "outWeight": 0.0, 
+        "invert": false, 
+        "driverControl": "leg_L0_fk0_ctl", 
+        "distanceType": 0, 
+        "useInterpolation": false, 
+        "twistAxis": 0, 
+        "type": 1, 
+        "useTranslate": false, 
+        "drawCenterCone": false, 
+        "interpolation": 0, 
+        "rbfMode": 0, 
+        "direction": 0, 
+        "drawCone": true, 
+        "connections": [
+            [
+                "skirt_L0_fk0_driven_WD.output[0]", 
+                "skirt_L0_fk0_driven.translateX"
+            ], 
+            [
+                "skirt_L0_fk0_driven_WD.output[1]", 
+                "skirt_L0_fk0_driven.translateY"
+            ], 
+            [
+                "skirt_L0_fk0_driven_WD.output[2]", 
+                "skirt_L0_fk0_driven.translateZ"
+            ], 
+            [
+                "skirt_L0_fk0_driven_WD.output[3]", 
+                "skirt_L0_fk0_driven.rotateX"
+            ], 
+            [
+                "skirt_L0_fk0_driven_WD.output[4]", 
+                "skirt_L0_fk0_driven.rotateY"
+            ], 
+            [
+                "skirt_L0_fk0_driven_WD.output[5]", 
+                "skirt_L0_fk0_driven.rotateZ"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateX", 
+                "skirt_L0_fk0_driven_WD.input[0]"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateY", 
+                "skirt_L0_fk0_driven_WD.input[1]"
+            ], 
+            [
+                "leg_L0_0_jnt.rotateZ", 
+                "skirt_L0_fk0_driven_WD.input[2]"
+            ], 
+            [
+                "skirt_L0_fk0_ctl.RBF_Multiplier", 
+                "skirt_L0_fk0_driven_WD.scale"
+            ]
+        ], 
+        "opposite": false, 
+        "iconSize": 1.0, 
+        "drivenAttrs": [
+            "translateX", 
+            "translateY", 
+            "translateZ", 
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "translateMin": 0.0, 
+        "driverPosesInfo": {
+            "translateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "translateY": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "translateZ": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0
+            ], 
+            "scaleX": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleY": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleZ": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "rotateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                35.5593201193624
+            ], 
+            "rotateY": [
+                0.0, 
+                0.0, 
+                50.58167416400444, 
+                0.0, 
+                29.598983978376275
+            ], 
+            "rotateZ": [
+                0.0, 
+                69.5228848504122, 
+                0.0, 
+                -44.751388095527794, 
+                51.97337992200988
+            ]
+        }, 
+        "drawPoses": true, 
+        "visibility": true, 
+        "indexDistance": 0.1, 
+        "setupName": "leg_L", 
+        "twistAngle": 90.0, 
+        "poses": {
+            "poseInput": [
+                [
+                    2.416167136821291e-15, 
+                    2.4789054336152306e-14, 
+                    7.982935904090039e-05
+                ], 
+                [
+                    1.493984422217687e-14, 
+                    -4.1648701414066745e-14, 
+                    69.52296467976839
+                ], 
+                [
+                    6.274620384647008e-05, 
+                    50.581674163932036, 
+                    0.00012726277919973615
+                ], 
+                [
+                    1.6670145303273292e-14, 
+                    -6.04030478247372e-14, 
+                    -44.75130826617223
+                ], 
+                [
+                    14.718531025173528, 
+                    29.598935993171985, 
+                    51.97345443806833
+                ]
+            ], 
+            "poseValue": [
+                [
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                [
+                    0.0, 
+                    3.552713678800501e-15, 
+                    -8.881784197001252e-16, 
+                    -1.9878466759146975e-16, 
+                    -0.0, 
+                    -56.832751462105634
+                ], 
+                [
+                    0.0, 
+                    3.552713678800501e-15, 
+                    0.0, 
+                    0.0, 
+                    -19.173224084917333, 
+                    -13.56072473135197
+                ], 
+                [
+                    0.0, 
+                    3.552713678800501e-15, 
+                    0.0, 
+                    -7.204130163930356, 
+                    -8.772668480239194, 
+                    7.10383945815926
+                ], 
+                [
+                    0.0, 
+                    3.552713678800501e-15, 
+                    -8.881784197001252e-16, 
+                    3.283128849953406, 
+                    -24.18973002959596, 
+                    -36.84558586470583
+                ]
+            ]
+        }, 
+        "grow": true, 
+        "attributesToRecreate": [], 
+        "allowNegativeWeights": true, 
+        "translateMax": 0.0, 
+        "driverAttrs": [
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "centerAngle": 0.0, 
+        "useRotate": true, 
+        "driverIndex": 0, 
+        "drawDriver": false, 
+        "rbfType": "weightDriver", 
+        "driverList": {}, 
+        "drivenControlName": "skirt_L0_fk0_ctl"
+    }, 
+    "skirt_R1_fk0_driven_WD": {
+        "driverNode": [
+            "leg_R0_0_jnt"
+        ], 
+        "poseLength": 1.0, 
+        "drawOrigin": true, 
+        "drawIndices": true, 
+        "twist": false, 
+        "drawWeight": true, 
+        "transformNode": {
+            "parent": "skirt_R1_fk0_driven", 
+            "sz": 1.0, 
+            "sy": 0.9999999999999999, 
+            "sx": 0.9999999999999997, 
+            "tz": 2.413730897058708, 
+            "name": "skirt_R1_fk0_driven_WD_trfm", 
+            "tx": 81.20364518399319, 
+            "ty": 37.83174424677965, 
+            "rx": -180.0, 
+            "ry": 0.0, 
+            "rz": -70.89491139681645, 
+            "v": true
+        }, 
+        "drawTwist": false, 
+        "drivenNode": [
+            "skirt_R1_fk0_driven"
+        ], 
+        "scale": 1.0, 
+        "angle": 45.0, 
+        "outWeight": 0.0, 
+        "invert": false, 
+        "driverControl": "leg_R0_fk0_ctl", 
+        "distanceType": 0, 
+        "useInterpolation": false, 
+        "twistAxis": 0, 
+        "type": 1, 
+        "useTranslate": false, 
+        "drawCenterCone": false, 
+        "interpolation": 0, 
+        "rbfMode": 0, 
+        "direction": 0, 
+        "drawCone": true, 
+        "connections": [
+            [
+                "skirt_R1_fk0_driven_WD.output[0]", 
+                "skirt_R1_fk0_driven.translateX"
+            ], 
+            [
+                "skirt_R1_fk0_driven_WD.output[1]", 
+                "skirt_R1_fk0_driven.translateY"
+            ], 
+            [
+                "skirt_R1_fk0_driven_WD.output[2]", 
+                "skirt_R1_fk0_driven.translateZ"
+            ], 
+            [
+                "skirt_R1_fk0_driven_WD.output[3]", 
+                "skirt_R1_fk0_driven.rotateX"
+            ], 
+            [
+                "skirt_R1_fk0_driven_WD.output[4]", 
+                "skirt_R1_fk0_driven.rotateY"
+            ], 
+            [
+                "skirt_R1_fk0_driven_WD.output[5]", 
+                "skirt_R1_fk0_driven.rotateZ"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateX", 
+                "skirt_R1_fk0_driven_WD.input[0]"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateY", 
+                "skirt_R1_fk0_driven_WD.input[1]"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateZ", 
+                "skirt_R1_fk0_driven_WD.input[2]"
+            ], 
+            [
+                "skirt_R1_fk0_ctl.RBF_Multiplier", 
+                "skirt_R1_fk0_driven_WD.scale"
+            ]
+        ], 
+        "opposite": false, 
+        "iconSize": 1.0, 
+        "drivenAttrs": [
+            "translateX", 
+            "translateY", 
+            "translateZ", 
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "translateMin": 0.0, 
+        "driverPosesInfo": {
+            "translateX": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "translateY": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "translateZ": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "scaleX": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleY": [
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002
+            ], 
+            "scaleZ": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "rotateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                35.5593201193624
+            ], 
+            "rotateY": [
+                0.0, 
+                0.0, 
+                50.58167416400444, 
+                0.0, 
+                29.598983978376275
+            ], 
+            "rotateZ": [
+                0.0, 
+                69.5228848504122, 
+                0.0, 
+                -44.751388095527794, 
+                51.97337992200988
+            ]
+        }, 
+        "drawPoses": true, 
+        "visibility": true, 
+        "indexDistance": 0.1, 
+        "setupName": "leg_R", 
+        "twistAngle": 90.0, 
+        "poses": {
+            "poseInput": [
+                [
+                    -5.574808705126576e-15, 
+                    6.135766990824335e-14, 
+                    7.982935337275435e-05
+                ], 
+                [
+                    -1.0899752298140939e-14, 
+                    3.7965428454703614e-14, 
+                    69.5229646797679
+                ], 
+                [
+                    6.27462094262517e-05, 
+                    50.58167416393244, 
+                    0.00012726278216001124
+                ], 
+                [
+                    9.459405629415607e-15, 
+                    -1.2810058416394499e-14, 
+                    -44.7513082661719
+                ], 
+                [
+                    14.718530485502072, 
+                    29.598935993168958, 
+                    51.97345443806786
+                ]
+            ], 
+            "poseValue": [
+                [
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    -0.0, 
+                    0.0
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    1.4210854715202004e-14, 
+                    4.440892098500626e-16, 
+                    -3.623170683805801, 
+                    27.510965470340807, 
+                    -7.805568713651382
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    7.105427357601002e-15, 
+                    4.440892098500626e-16, 
+                    -4.128101485275516, 
+                    5.180707892500039, 
+                    -32.97809922392207
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    7.105427357601002e-15, 
+                    4.440892098500626e-16, 
+                    -1.0141603847376695, 
+                    -19.379396823734396, 
+                    -8.81504477342992
+                ], 
+                [
+                    -1.4210854715202004e-14, 
+                    1.4210854715202004e-14, 
+                    8.881784197001252e-16, 
+                    -3.485706056358109, 
+                    21.988662405204824, 
+                    -27.15591104591261
+                ]
+            ]
+        }, 
+        "grow": true, 
+        "attributesToRecreate": [], 
+        "allowNegativeWeights": true, 
+        "translateMax": 0.0, 
+        "driverAttrs": [
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "centerAngle": 0.0, 
+        "useRotate": true, 
+        "driverIndex": 0, 
+        "drawDriver": false, 
+        "rbfType": "weightDriver", 
+        "driverList": {}, 
+        "drivenControlName": "skirt_R1_fk0_ctl"
+    }, 
+    "skirt_R0_fk0_driven_WD": {
+        "driverNode": [
+            "leg_R0_0_jnt"
+        ], 
+        "poseLength": 1.0, 
+        "drawOrigin": true, 
+        "drawIndices": true, 
+        "twist": false, 
+        "drawWeight": true, 
+        "transformNode": {
+            "parent": "skirt_R0_fk0_driven", 
+            "sz": 0.9999999999999999, 
+            "sy": 1.0, 
+            "sx": 1.0, 
+            "tz": -5.36633211541818, 
+            "name": "skirt_R0_fk0_driven_WD_trfm", 
+            "tx": 85.1046362732282, 
+            "ty": 27.488741589443247, 
+            "rx": 179.99999999999991, 
+            "ry": -87.7776629418316, 
+            "rz": -77.76424820321202, 
+            "v": true
+        }, 
+        "drawTwist": false, 
+        "drivenNode": [
+            "skirt_R0_fk0_driven"
+        ], 
+        "scale": 1.0, 
+        "angle": 45.0, 
+        "outWeight": 0.0, 
+        "invert": false, 
+        "driverControl": "leg_R0_fk0_ctl", 
+        "distanceType": 0, 
+        "useInterpolation": false, 
+        "twistAxis": 0, 
+        "type": 1, 
+        "useTranslate": false, 
+        "drawCenterCone": false, 
+        "interpolation": 0, 
+        "rbfMode": 0, 
+        "direction": 0, 
+        "drawCone": true, 
+        "connections": [
+            [
+                "skirt_R0_fk0_driven_WD.output[0]", 
+                "skirt_R0_fk0_driven.translateX"
+            ], 
+            [
+                "skirt_R0_fk0_driven_WD.output[1]", 
+                "skirt_R0_fk0_driven.translateY"
+            ], 
+            [
+                "skirt_R0_fk0_driven_WD.output[2]", 
+                "skirt_R0_fk0_driven.translateZ"
+            ], 
+            [
+                "skirt_R0_fk0_driven_WD.output[3]", 
+                "skirt_R0_fk0_driven.rotateX"
+            ], 
+            [
+                "skirt_R0_fk0_driven_WD.output[4]", 
+                "skirt_R0_fk0_driven.rotateY"
+            ], 
+            [
+                "skirt_R0_fk0_driven_WD.output[5]", 
+                "skirt_R0_fk0_driven.rotateZ"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateX", 
+                "skirt_R0_fk0_driven_WD.input[0]"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateY", 
+                "skirt_R0_fk0_driven_WD.input[1]"
+            ], 
+            [
+                "leg_R0_0_jnt.rotateZ", 
+                "skirt_R0_fk0_driven_WD.input[2]"
+            ], 
+            [
+                "skirt_R0_fk0_ctl.RBF_Multiplier", 
+                "skirt_R0_fk0_driven_WD.scale"
+            ]
+        ], 
+        "opposite": false, 
+        "iconSize": 1.0, 
+        "drivenAttrs": [
+            "translateX", 
+            "translateY", 
+            "translateZ", 
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "translateMin": 0.0, 
+        "driverPosesInfo": {
+            "translateX": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "translateY": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "translateZ": [
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0, 
+                -0.0
+            ], 
+            "scaleX": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "scaleY": [
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002, 
+                1.0000000000000002
+            ], 
+            "scaleZ": [
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0, 
+                1.0
+            ], 
+            "rotateX": [
+                0.0, 
+                0.0, 
+                0.0, 
+                0.0, 
+                35.5593201193624
+            ], 
+            "rotateY": [
+                0.0, 
+                0.0, 
+                50.58167416400444, 
+                0.0, 
+                29.598983978376275
+            ], 
+            "rotateZ": [
+                0.0, 
+                69.5228848504122, 
+                0.0, 
+                -44.751388095527794, 
+                51.97337992200988
+            ]
+        }, 
+        "drawPoses": true, 
+        "visibility": true, 
+        "indexDistance": 0.1, 
+        "setupName": "leg_R", 
+        "twistAngle": 90.0, 
+        "poses": {
+            "poseInput": [
+                [
+                    -5.574808705126576e-15, 
+                    6.135766990824335e-14, 
+                    7.982935337275435e-05
+                ], 
+                [
+                    -1.0899752298140939e-14, 
+                    3.7965428454703614e-14, 
+                    69.5229646797679
+                ], 
+                [
+                    6.27462094262517e-05, 
+                    50.58167416393244, 
+                    0.00012726278216001124
+                ], 
+                [
+                    9.459405629415607e-15, 
+                    -1.2810058416394499e-14, 
+                    -44.7513082661719
+                ], 
+                [
+                    14.718530485502072, 
+                    29.598935993168958, 
+                    51.97345443806786
+                ]
+            ], 
+            "poseValue": [
+                [
+                    0.0, 
+                    3.552713678800501e-15, 
+                    0.0, 
+                    -3.975693351829396e-16, 
+                    -0.0, 
+                    1.5902773407317584e-15
+                ], 
+                [
+                    0.0, 
+                    7.105427357601002e-15, 
+                    -8.881784197001252e-16, 
+                    0.0, 
+                    -0.0, 
+                    -56.8327514621061
+                ], 
+                [
+                    0.0, 
+                    7.105427357601002e-15, 
+                    0.0, 
+                    0.0, 
+                    -19.173224084916917, 
+                    -13.560724731352572
+                ], 
+                [
+                    0.0, 
+                    7.105427357601002e-15, 
+                    0.0, 
+                    -7.204130163930386, 
+                    -8.77266848023919, 
+                    7.10383945815886
+                ], 
+                [
+                    0.0, 
+                    7.105427357601002e-15, 
+                    -8.881784197001252e-16, 
+                    3.283128849953386, 
+                    -24.189730029595694, 
+                    -36.84558586470622
+                ]
+            ]
+        }, 
+        "grow": true, 
+        "attributesToRecreate": [], 
+        "allowNegativeWeights": true, 
+        "translateMax": 0.0, 
+        "driverAttrs": [
+            "rotateX", 
+            "rotateY", 
+            "rotateZ"
+        ], 
+        "centerAngle": 0.0, 
+        "useRotate": true, 
+        "driverIndex": 0, 
+        "drawDriver": false, 
+        "rbfType": "weightDriver", 
+        "driverList": {}, 
+        "drivenControlName": "skirt_R0_fk0_ctl"
+    }
+}

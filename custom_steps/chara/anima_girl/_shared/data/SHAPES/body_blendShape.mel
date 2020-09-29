@@ -1,0 +1,333 @@
+global proc SHAPESImportBlendShapeSetup(string $node)
+{
+	string $attr[] = `listAttr -m -k -lf $node`;
+	stringArrayRemoveAtIndex(0, $attr);
+	
+	if (!`optionVar -ex SHAPESRestoreShapeWeights`)
+		return;
+	
+	string $importPath = "D:/Dropbox/WIP/Anima/CEDEC/build/custom_steps/chara/anima_girl/_shared/data/SHAPES";
+	
+	if (!`filetest -d $importPath`)
+		return;
+	
+	string $weightListString = `optionVar -q SHAPESRestoreShapeWeights`;
+	string $weightList[];
+	tokenize $weightListString "," $weightList;
+	string $targets[];
+	string $prefix = "";
+	for ($weight in $weightList)
+	{
+		string $items[];
+		tokenize $weight "_" $items;
+		$prefix = $items[0];
+		stringArrayRemoveAtIndex(0, $items);
+		$targets[size($targets)] = stringArrayToString($items, "_");
+	}
+	
+	for ($target in $targets)
+	{
+		for ($i = 0; $i < size($attr); $i ++)
+		{
+			if ($target == $attr[$i])
+			{
+				string $fileName = $importPath + "/" + $prefix + "_" + $target + ".bsw";
+				int $fileID = `fopen $fileName "r"`;
+				string $fileLine = `fgetline $fileID`;
+				
+				while (size($fileLine) > 0)
+				{
+					string $values[];
+					tokenize $fileLine " " $values;
+					float $val = $values[1];
+					setAttr ($node + ".it[0].itg[" + $i + "].tw[" + $values[0] + "]") $val;
+					$fileLine = `fgetline $fileID`;
+				}
+				fclose $fileID;
+			}
+		}
+	}
+	optionVar -rm SHAPESRestoreShapeWeights;
+}
+
+global proc string SHAPESImportGetLastCurve(int $init){
+	global string $SHAPESImportLastCurveUL;
+	global string $SHAPESImportLastCurveUA;
+	global string $SHAPESImportLastCurveUU;
+	string $lastCurveUL;
+	string $lastCurveUA;
+	string $lastCurveUU;
+	string $curves[] = `ls -type "animCurve"`;
+	for ($c in $curves){
+		if (`gmatch $c "animCurveUL*"`)
+			$lastCurveUL = $c;
+		else if (`gmatch $c "animCurveUA*"`)
+			$lastCurveUA = $c;
+		else if (`gmatch $c "animCurveUU*"`)
+			$lastCurveUU = $c;
+	}
+	if ($init == 1){
+		$SHAPESImportLastCurveUL = $lastCurveUL;
+		$SHAPESImportLastCurveUA = $lastCurveUA;
+		$SHAPESImportLastCurveUU = $lastCurveUU;
+		return "";
+	}
+	if ($lastCurveUL != $SHAPESImportLastCurveUL){
+		$SHAPESImportLastCurveUL = $lastCurveUL;
+		return $lastCurveUL;
+	}
+	else if ($lastCurveUA != $SHAPESImportLastCurveUA){
+		$SHAPESImportLastCurveUA = $lastCurveUA;
+		return $lastCurveUA;
+	}
+	else if ($lastCurveUU != $SHAPESImportLastCurveUU){
+		$SHAPESImportLastCurveUU = $lastCurveUU;
+		return $lastCurveUU;
+	}
+	else return "";
+}
+
+global proc string SHAPES_getNamespace(string $name){
+	if (catchQuiet(`select -r ("*:" + $name)`))
+		return "";
+	string $sel[] = `ls -sl`;
+	string $items[] = stringToStringArray($sel[0], ":");
+	stringArrayRemoveAtIndex(size($items) - 1, $items);
+	string $space = stringArrayToString($items, ":") + ":";
+	return $space;
+}
+
+global proc SHAPES_setEmptyTargetData(string $bsNode, int $id, int $pos){
+	string $comp[] = `eval("getAttr " + $bsNode + ".it[0].itg[" + $id + "].iti[" + $pos + "].ict")`;
+	if (!size($comp)){
+		setAttr ($bsNode + ".it[0].itg[" + $id + "].iti[" + $pos + "].ict") -type componentList 1 vtx[0];
+		setAttr ($bsNode + ".it[0].itg[" + $id + "].iti[" + $pos + "].ipt") -type pointArray 1 0 0 0 1;
+	}
+}
+
+SHAPESImportGetLastCurve 1;
+
+{
+string $geo = "skin_C0_geoSdm";
+string $space = `SHAPES_getNamespace $geo`;
+
+// import shapes
+file -i -type "mayaAscii" -mnc 0 -pr "D:/Dropbox/WIP/Anima/CEDEC/build/custom_steps/chara/anima_girl/_shared/data/SHAPES/body_blendShape_shapes.ma";
+// import data node
+file -i -type "mayaAscii" -mnc 0 -pr "D:/Dropbox/WIP/Anima/CEDEC/build/custom_steps/chara/anima_girl/_shared/data/SHAPES/body_blendShape_shapes_data.ma";
+
+// create blendshape node
+deformer -type blendShape -foc -n body_blendShape ($space + $geo);
+addAttr -ln SHAPESData -at "message" body_blendShape;
+addAttr -ln SHAPESDrivenSetGroup -at "message" body_blendShape;
+addAttr -ln SHAPESDrivenSet -at "message" -m -im 0 body_blendShape;
+
+addAttr -at message -ln SHAPESSolver -m -im 0 body_blendShape;
+string $allShapes[] = `listRelatives -s -f ($space + $geo)`;
+string $shapes[] = `listRelatives -s -ni -f ($space + $geo)`;
+string $intermediates[] = stringArrayRemove({$shapes[0]}, $allShapes);
+
+connectAttr -f body_blendShape.SHAPESData body_blendShape_data.SHAPESData;
+
+// add the target shapes
+blendShape -e -t ($space + $geo) 0 |elbow_L 1 body_blendShape;
+blendShape -e -t ($space + $geo) 1 |elbow_R 1 body_blendShape;
+blendShape -e -t ($space + $geo) 2 |wrist_up_L 1 body_blendShape;
+blendShape -e -t ($space + $geo) 3 |wrist_down_L 1 body_blendShape;
+blendShape -e -t ($space + $geo) 4 |wrist_front_L 1 body_blendShape;
+blendShape -e -t ($space + $geo) 5 |wrist_back_L 1 body_blendShape;
+blendShape -e -t ($space + $geo) 6 |wrist_up_R 1 body_blendShape;
+blendShape -e -t ($space + $geo) 7 |wrist_down_R 1 body_blendShape;
+blendShape -e -t ($space + $geo) 8 |wrist_front_R 1 body_blendShape;
+blendShape -e -t ($space + $geo) 9 |wrist_back_R 1 body_blendShape;
+
+// add the helper attributes
+addAttr -ln blend_arm_L0_end_jnt_RBF -k 1 body_blendShape;
+setAttr -l 1 body_blendShape.blend_arm_L0_end_jnt_RBF;
+addAttr -ln blend_arm_R0_end_jnt_RBF -k 1 body_blendShape;
+setAttr -l 1 body_blendShape.blend_arm_R0_end_jnt_RBF;
+
+delete |elbow_L |elbow_R |wrist_up_L |wrist_down_L |wrist_front_L |wrist_back_L |wrist_up_R |wrist_down_R |wrist_front_R |wrist_back_R;
+
+// check for empty channels
+SHAPES_setEmptyTargetData body_blendShape 0 6000;
+SHAPES_setEmptyTargetData body_blendShape 1 6000;
+SHAPES_setEmptyTargetData body_blendShape 2 6000;
+SHAPES_setEmptyTargetData body_blendShape 3 6000;
+SHAPES_setEmptyTargetData body_blendShape 4 6000;
+SHAPES_setEmptyTargetData body_blendShape 5 6000;
+SHAPES_setEmptyTargetData body_blendShape 6 6000;
+SHAPES_setEmptyTargetData body_blendShape 7 6000;
+SHAPES_setEmptyTargetData body_blendShape 8 6000;
+SHAPES_setEmptyTargetData body_blendShape 9 6000;
+
+// connect drivers to shapes
+{
+setDrivenKeyframe -dv -44.95999908 -v 1 -cd blend_arm_L0_3_jnt.rotateZ -itt spline -ott spline body_blendShape.elbow_L;
+setDrivenKeyframe -dv -10 -v 0 -cd blend_arm_L0_3_jnt.rotateZ -itt flat -ott flat body_blendShape.elbow_L;
+string $tempCurve = "body_blendShape_elbow_L_WD";
+rename body_blendShape_elbow_L $tempCurve;
+select -r $tempCurve;
+setAttr ($tempCurve + ".preInfinity") 1;
+setAttr ($tempCurve + ".postInfinity") 0;
+}
+select -cl;
+addAttr -ln SHAPES_sdk -at message body_blendShape_elbow_L_WD;
+{
+setDrivenKeyframe -dv -44.95999908 -v 1 -cd blend_arm_R0_3_jnt.rotateZ -itt spline -ott spline body_blendShape.elbow_R;
+setDrivenKeyframe -dv -10 -v 0 -cd blend_arm_R0_3_jnt.rotateZ -itt flat -ott flat body_blendShape.elbow_R;
+string $tempCurve = "body_blendShape_elbow_R_WD";
+rename body_blendShape_elbow_R $tempCurve;
+select -r $tempCurve;
+setAttr ($tempCurve + ".preInfinity") 1;
+setAttr ($tempCurve + ".postInfinity") 0;
+}
+select -cl;
+addAttr -ln SHAPES_sdk -at message body_blendShape_elbow_R_WD;
+{
+string $wd = `createNode weightDriver`;
+string $transform[] = `listRelatives -p $wd`;
+rename $transform[0] body_blendShape_blend_arm_L0_end_jnt_WD;
+setAttr -l 1 body_blendShape_blend_arm_L0_end_jnt_WD.v;
+parent body_blendShape_blend_arm_L0_end_jnt_WD arm_L0_6_jnt;
+xform -m 0.9995501639 0.02999116228 0 0 -0.02999116228 0.9995501639 0 0 0 0 1 0 0.3989338226 8.793957686e-06 1.421085472e-14 1 body_blendShape_blend_arm_L0_end_jnt_WD;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.type 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.kernel 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.twistAxis 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.scale 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.allowNegativeWeights 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.opposite 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.drawOrigin 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.drawDriver 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.drawTwist 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.drawPoses 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.poseLength 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.drawIndices 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.indexDistance 0.1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.iconSize 0.2393602936;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverIndex 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverColorR 0.1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverColorG 0.7;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverColorB 0;
+connectAttr -f blend_arm_L0_end_jnt.worldMatrix[0] body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].driverInput;
+connectAttr -f arm_L0_fk2_ctl.message body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].controlNode;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[0].poseMatrix -type "matrix" 0.9999760441 -0.006795224048 -0.001317637086 0 -0.00128800168 0.004363744734 -0.9999896493 0 0.006800903545 0.9999673908 0.004354887937 0 47.98441207 111.3798689 -1.130073511 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[0].poseParentMatrix -type "matrix" 0.9995648475 -0.006923041087 0.02867380749 0 0.02870302152 0.004157985097 -0.9995793354 0 0.006800903545 0.9999673908 0.004354887937 0 47.58565159 111.3826307 -1.141503672 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[0].poseMode 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[0].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[0].cpv -type "doubleArray" 13 0 0 0 0 0 0 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[0].cpro 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[1].poseMatrix -type "matrix" 0.7315790016 0.6817536604 0.002027553569 0 -0.001266724407 0.00433329816 -0.9999898089 0 -0.6817554986 0.7315689776 0.004033743942 0 47.98441207 111.3798689 -1.130073511 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[1].poseParentMatrix -type "matrix" 0.9995681224 -0.006348596592 0.02869257792 0 0.02871898385 0.004107997342 -0.9995790836 0 0.00622805533 0.9999714094 0.004288548433 0 47.58564905 111.3821079 -1.141520734 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[1].poseMode 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[1].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[1].cpv -type "doubleArray" 13 0 0 0 0 -86.70854974 0 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[1].cpro 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[2].poseMatrix -type "matrix" 0.7176954856 -0.6963457773 -0.003968432533 0 -0.001265953003 0.004394113363 -0.9999895445 0 0.6963559344 0.7176930056 0.002272094296 0 47.98441207 111.3798689 -1.130073511 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[2].poseParentMatrix -type "matrix" 0.9995602984 -0.007498001787 0.02868779792 0 0.0287198922 0.004208319801 -0.9995786401 0 0.007374115002 0.9999630343 0.004421811199 0 47.58565618 111.383154 -1.141516383 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[2].poseMode 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[2].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[2].cpv -type "doubleArray" 13 0 0 0 0 87.45864609 0 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[2].cpro 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[3].poseMatrix -type "matrix" 0.9418083548 -0.00786890011 0.3360581843 0 0.3360814938 0.001815970546 -0.9418311588 0 0.006800903545 0.9999673908 0.004354887937 0 47.98441207 111.3798689 -1.130073511 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[3].poseParentMatrix -type "matrix" 0.9995541849 -0.006924575359 0.02904275773 0 0.02907196641 0.004155429468 -0.9995686836 0 0.006800903545 0.9999673908 0.004354887937 0 47.58566146 111.3826321 -1.141839301 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[3].poseMode 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[3].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[3].cpv -type "doubleArray" 13 0 0 0 0 0 -39.40402784 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[3].cpro 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[4].poseMatrix -type "matrix" 0.9104474543 -0.05423720817 -0.4100533603 0 -0.3999502582 -0.3682397431 -0.8393088124 0 -0.1054761773 0.9281475189 -0.3569551221 0 47.98441207 111.3798689 -1.130073511 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[4].poseParentMatrix -type "matrix" 0.9995767319 -0.006953063789 0.02824910622 0 0.02244316822 -0.4335518231 -0.900849111 0 0.01851111284 0.9011018098 -0.4332122657 0 47.58564104 111.382658 -1.141117269 1;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[4].poseMode 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[4].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[4].cpv -type "doubleArray" 13 0 0 0 -26.03894423 -16.19779287 46.51773825 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.driverList[0].pose[4].cpro 0;
+connectAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.output[1] body_blendShape.wrist_up_L;
+connectAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.output[2] body_blendShape.wrist_down_L;
+connectAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.output[3] body_blendShape.wrist_front_L;
+connectAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.output[4] body_blendShape.wrist_back_L;
+addAttr -at message -ln SHAPES_wd body_blendShape_blend_arm_L0_end_jnt_WDShape;
+addAttr -at message -ln solverGroupMessage body_blendShape_blend_arm_L0_end_jnt_WDShape;
+addAttr -ln solverGroup -h 1 -dt "string" body_blendShape_blend_arm_L0_end_jnt_WDShape;
+setAttr body_blendShape_blend_arm_L0_end_jnt_WDShape.solverGroup -type "string" blend_arm_L0_end_jnt_RBF;
+connectAttr -f -na body_blendShape_blend_arm_L0_end_jnt_WDShape.solverGroupMessage body_blendShape.SHAPESSolver;
+}
+{
+string $wd = `createNode weightDriver`;
+string $transform[] = `listRelatives -p $wd`;
+rename $transform[0] body_blendShape_blend_arm_R0_end_jnt_WD;
+setAttr -l 1 body_blendShape_blend_arm_R0_end_jnt_WD.v;
+parent body_blendShape_blend_arm_R0_end_jnt_WD arm_R0_6_jnt;
+xform -m 0.9995501639 0.02999116229 0 0 -0.02999116229 0.9995501639 0 0 0 0 1 0 -0.3989341941 -8.793960542e-06 0 1 body_blendShape_blend_arm_R0_end_jnt_WD;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.type 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.kernel 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.twistAxis 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.scale 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.allowNegativeWeights 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.opposite 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.drawOrigin 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.drawDriver 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.drawTwist 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.drawPoses 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.poseLength 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.drawIndices 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.indexDistance 0.1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.iconSize 0.2393605165;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverIndex 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverColorR 0.1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverColorG 0.7;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverColorB 0;
+connectAttr -f blend_arm_R0_end_jnt.worldMatrix[0] body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].driverInput;
+connectAttr -f arm_R0_fk2_ctl.message body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].controlNode;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[0].poseMatrix -type "matrix" 0.7069471864 0.7072290816 -0.007259600448 0 -0.01272992484 0.02298615671 0.9996547332 0 0.7071517692 -0.7066106868 0.02525297187 0 -36.47969994 83.87988152 -0.793319481 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[0].poseParentMatrix -type "matrix" 0.7070109613 0.7062215629 -0.03723714215 0 0.008477969334 0.04418643887 0.9989873286 0 0.7071517692 -0.7066106868 0.02525297187 0 -36.19764902 84.16161784 -0.8081658652 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[0].poseMode 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[0].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[0].cpv -type "doubleArray" 13 0 0 0 0 0 0 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[0].cpro 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[1].poseMatrix -type "matrix" 0.9995105119 0.02886279762 0.01206960754 0 -0.0127361647 0.02302276215 0.9996538113 0 0.02857492994 -0.9993182133 0.02337909413 0 -36.47969994 83.87988152 -0.793319481 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[1].poseParentMatrix -type "matrix" 0.707416986 0.7058147582 -0.03723889094 0 0.008454229439 0.04423319963 0.9989854604 0 0.7067458765 -0.7070141096 0.02532419686 0 -36.19727979 84.16124727 -0.8081674305 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[1].poseMode 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[1].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[1].cpv -type "doubleArray" 13 0 0 0 0 -86.70855008 0 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[1].cpro 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[2].poseMatrix -type "matrix" 0.02174270653 0.9995058482 -0.02270052952 0 -0.01269290302 0.02298003935 0.9996553446 0 0.9996830222 -0.02144707717 0.01318627905 0 -36.47969994 83.87988152 -0.793319481 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[2].poseParentMatrix -type "matrix" 0.7066041546 0.7066269554 -0.0372681433 0 0.008525336045 0.04416246689 0.9989879855 0 0.7075576919 -0.7062067844 0.02518115033 0 -36.19801959 84.16198649 -0.8081940546 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[2].poseMode 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[2].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[2].cpv -type "doubleArray" 13 0 0 0 0 87.45864643 0 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[2].cpro 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[3].poseMatrix -type "matrix" 0.6698114095 0.6580296755 -0.3440197986 0 0.2264708613 0.2601889379 0.9386227494 0 0.7071517692 -0.7066106868 0.02525297187 0 -36.47969994 83.87988152 -0.793319481 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[3].poseParentMatrix -type "matrix" 0.7070077839 0.7062052052 -0.0376058731 0 0.008738931643 0.04444710737 0.998973516 0 0.7071517692 -0.7066106868 0.02525297187 0 -36.19765203 84.16160284 -0.8085012939 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[3].poseMode 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[3].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[3].cpv -type "doubleArray" 13 0 0 0 0 0 -39.40402799 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[3].cpro 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[4].poseMatrix -type "matrix" 0.6038265214 0.6891252413 0.40062443 0 -0.5557575441 0.003667692711 0.831336334 0 0.5714254844 -0.724632976 0.3852012018 0 -36.47969994 83.87988152 -0.793319481 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[4].poseParentMatrix -type "matrix" 0.7069920174 0.7062627299 -0.03681363302 0 -0.3018987738 0.3484644068 0.88737235 0 0.6395462592 -0.6162511773 0.4595814062 0 -36.19766644 84.1616551 -0.8077805436 1;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[4].poseMode 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[4].cpa -type "stringArray" 13 translateX translateY translateZ rotateX rotateY rotateZ rotateOrder scaleX scaleY scaleZ arm_blend arm_roundness arm_Tweak_vis;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[4].cpv -type "doubleArray" 13 0 0 0 -26.03894433 -16.19779293 46.51773843 1 1 1 1 0 0 0;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.driverList[0].pose[4].cpro 0;
+connectAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.output[1] body_blendShape.wrist_up_R;
+connectAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.output[2] body_blendShape.wrist_down_R;
+connectAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.output[3] body_blendShape.wrist_front_R;
+connectAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.output[4] body_blendShape.wrist_back_R;
+addAttr -at message -ln SHAPES_wd body_blendShape_blend_arm_R0_end_jnt_WDShape;
+addAttr -at message -ln solverGroupMessage body_blendShape_blend_arm_R0_end_jnt_WDShape;
+addAttr -ln solverGroup -h 1 -dt "string" body_blendShape_blend_arm_R0_end_jnt_WDShape;
+setAttr body_blendShape_blend_arm_R0_end_jnt_WDShape.solverGroup -type "string" blend_arm_R0_end_jnt_RBF;
+connectAttr -f -na body_blendShape_blend_arm_R0_end_jnt_WDShape.solverGroupMessage body_blendShape.SHAPESSolver;
+}
+
+// connect sequences
+
+// other connections
+
+// setup combos
+
+// apply the weight maps
+SHAPESImportBlendShapeSetup body_blendShape;
+
+select -cl;
+}
+print "// Finished re-building the blend shape node. //\n";

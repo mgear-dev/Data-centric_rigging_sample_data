@@ -1,0 +1,30 @@
+{
+    "bypassObj": [], 
+    "objDDic": [
+        {
+            "blendWeights": {}, 
+            "nameSpace": "", 
+            "normalizeWeights": 1, 
+            "objName": "eyehighlightSecond_L0_geoSdm", 
+            "skinClsName": "skinCluster26", 
+            "skinDataFormat": "compressed", 
+            "skinningMethod": 0, 
+            "vertexCount": 8, 
+            "weights": {
+                "eye_L0_eye_jnt": {
+                    "0": 1.0, 
+                    "1": 1.0, 
+                    "2": 1.0, 
+                    "3": 1.0, 
+                    "4": 1.0, 
+                    "5": 1.0, 
+                    "6": 1.0, 
+                    "7": 1.0
+                }
+            }
+        }
+    ], 
+    "objs": [
+        "eyehighlightSecond_L0_geoSdm"
+    ]
+}

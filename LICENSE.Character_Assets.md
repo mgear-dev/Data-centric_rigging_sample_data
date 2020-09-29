@@ -1,3 +1,6 @@
+Copyright (c) 2020 Studio Anima
+www.studioanima.co.jp
+
 Attribution-NonCommercial 4.0 International
 
 =======================================================================
