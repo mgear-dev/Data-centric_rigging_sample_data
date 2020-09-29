@@ -23,6 +23,4 @@ Nishino-san
 
 and all the people who made this possible.
 
-
-
 <img src=https://user-images.githubusercontent.com/1050212/94575627-67dcfb80-02af-11eb-8930-aa75769cc0e8.png>
