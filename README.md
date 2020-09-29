@@ -9,9 +9,19 @@ This Sample data is dual-licensed:
 
 Thanks to  https://www.studioanima.co.jp/ for all the support and sample model data.
 
-Modeler: Svein-Arne Hartveit
+Modeler: Svein-Arne Hartveit  
 
-Modeler: Ippei Suzuki 鈴木 一平
+Modeler: Ippei Suzuki 鈴木 一平 
+
+**Special Thanks to:**
+
+Umezu-san 
+
+Okishima-san 
+
+Nishino-san
+
+and all the people who made this possible.
 
 
 
