@@ -1,6 +1,6 @@
 Data Centric Rigging Sample Data
 ================================
-[![Data-Centric Rigging: How to create and maintain large amount of rig assets.](https://res.cloudinary.com/marcomontalbano/image/upload/v1601422045/video_to_markdown/images/youtube--wzYpt6_bhzU-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/wzYpt6_bhzU "Data-Centric Rigging: How to create and maintain large amount of rig assets.")
+[![Data-Centric Rigging: How to create and maintain large amount of rig assets.](https://user-images.githubusercontent.com/1050212/94626979-3e47c280-02f7-11eb-89d4-809d9e52838e.png)](https://youtu.be/wzYpt6_bhzU "Data-Centric Rigging: How to create and maintain large amount of rig assets.")
 
 This Sample data is dual-licensed:
 
