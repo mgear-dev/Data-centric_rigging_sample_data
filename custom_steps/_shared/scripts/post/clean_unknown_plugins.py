@@ -10,5 +10,5 @@ for pl in unknownPlugins:
     # force removal of plugins
     mc.unknownPlugin(pl, remove=True)
 
-print "The following unknown plugins removed!"
+print("The following unknown plugins removed!")
 pprint(unknownPlugins)

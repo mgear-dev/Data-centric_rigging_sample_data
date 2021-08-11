@@ -59,14 +59,14 @@ class CustomShifterStep(cstp.customShifterMainStep):
         self.post_scripts_path = os.sep.join(
             [self.custom_steps_path, "scripts", "post"])
 
-        print "asset_type: " + self.asset_type
-        print "asset_name: " + self.asset_name
-        print "asset_target: " + self.asset_target
-        print "custom_steps_path: " + self.custom_steps_path
-        print "custom_steps_base_path: " + self.custom_steps_base_path
-        print "asset_path: " + self.asset_path
-        print "data_path: " + self.data_path
-        print "pre_scripts_path: " + self.pre_scripts_path
-        print "post_scripts_path: " + self.post_scripts_path
-        print "asset_base_path: " + self.asset_base_path
-        print "variant_base_path: " + self.variant_base_path
+        print("asset_type: " + self.asset_type)
+        print("asset_name: " + self.asset_name)
+        print("asset_target: " + self.asset_target)
+        print("custom_steps_path: " + self.custom_steps_path)
+        print("custom_steps_base_path: " + self.custom_steps_base_path)
+        print("asset_path: " + self.asset_path)
+        print("data_path: " + self.data_path)
+        print("pre_scripts_path: " + self.pre_scripts_path)
+        print("post_scripts_path: " + self.post_scripts_path)
+        print("asset_base_path: " + self.asset_base_path)
+        print("variant_base_path: " + self.variant_base_path)

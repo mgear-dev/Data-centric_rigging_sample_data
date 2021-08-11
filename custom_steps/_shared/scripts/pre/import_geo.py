@@ -31,7 +31,7 @@ class CustomShifterStep(cstp.customShifterMainStep):
 
         path = os.sep.join([stepDict["paths"].asset_path,
                             "geo.ma"])
-        print path
+        print(path)
 
         pm.importFile(path)
 

@@ -4,21 +4,21 @@
         "skirtA_C0_geo.jSkin", 
         "onePieceA_C0_geo.jSkin", 
         "hairA_C0_geo.jSkin", 
-        "hairTopA_C0_geo.jSkin", 
         "hairSideA_C0_geo.jSkin", 
+        "hairTopA_C0_geo.jSkin", 
         "body_C0_geoSdm.jSkin", 
         "brow_C0_geoSdm.jSkin", 
         "eyehighlightSecond_R0_geoSdm.jSkin", 
         "eyehighlight_R0_geoSdm.jSkin", 
         "eyehighlightSecond_L0_geoSdm.jSkin", 
         "eyehighlight_L0_geoSdm.jSkin", 
-        "eyelash_C0_geoSdm.jSkin", 
-        "eyeline_C0_geoSdm.jSkin", 
         "eye_R0_geoSdm.jSkin", 
         "eye_L0_geoSdm.jSkin", 
+        "eyelash_C0_geoSdm.jSkin", 
+        "eyeline_C0_geoSdm.jSkin", 
         "teethU_C0_geoSdm.jSkin", 
         "teethD_C0_geoSdm.jSkin", 
         "tongue_C0_geoSdm.jSkin"
     ], 
-    "rootPath": "D:/Dropbox/WIP/Anima/CEDEC/build/custom_steps/chara/anima_girl/outfit_A/game/data/skin"
+    "rootPath": "D:/Dropbox/mGear_dev/Data-centric_rigging_sample_data/custom_steps/chara/anima_girl/outfit_A/game/data/skin"
 }
